@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using TodoIdentity.Models;
 
 namespace TodoIdentity.Data
 {
@@ -12,5 +13,7 @@ namespace TodoIdentity.Data
             : base(options)
         {
         }
+
+        public DbSet<Todo> Todos { get; set; }
     }
 }

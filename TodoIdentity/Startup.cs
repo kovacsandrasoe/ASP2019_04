@@ -37,8 +37,34 @@ namespace TodoIdentity
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>()
+
+
+
+            //services.AddDefaultIdentity<IdentityUser>(t =>
+            //{
+            //    t.Password.RequireDigit = false; //ne legyen szám
+            //    t.Password.RequiredLength = 6; //minimum 6!!
+            //    t.Password.RequireLowercase = false;//ne legyen kötelező kisbetű
+            //    t.Password.RequireNonAlphanumeric = false; //ne legyen speciális
+            //    t.Password.RequireUppercase = false; //ne legyen kötelező nagybetű
+            //})
+            //    .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddIdentity<IdentityUser, IdentityRole>(t =>
+            {
+                t.Password.RequireDigit = false; //ne legyen szám
+                t.Password.RequiredLength = 6; //minimum 6!!
+                t.Password.RequireLowercase = false;//ne legyen kötelező kisbetű
+                t.Password.RequireNonAlphanumeric = false; //ne legyen speciális
+                t.Password.RequireUppercase = false; //ne legyen kötelező nagybetű
+            })
+                .AddRoleManager<RoleManager<IdentityRole>>()
+                .AddDefaultUI()
+                .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+
+
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

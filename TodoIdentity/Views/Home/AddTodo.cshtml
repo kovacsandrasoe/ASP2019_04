@@ -1,0 +1,21 @@
+﻿
+<h4>Todo</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddTodo" method="post">
+            
+            Todo: <input type="text" name="todoname" />
+            <br/>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
